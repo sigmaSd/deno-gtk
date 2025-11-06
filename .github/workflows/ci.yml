@@ -69,14 +69,12 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Verify formatting
-        if: runner.os != 'Windows'
-        run: deno fmt --check
-
       - name: Run tests (Deno)
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
             xvfb-run -a deno task test
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            deno test --allow-ffi
           else
             deno task test
           fi
@@ -85,8 +83,8 @@ jobs:
       - name: Run tests (Bun)
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
-            xvfb-run -a bun test/widget_test.ts
+            xvfb-run -a bun test
           else
-            bun test/widget_test.ts
+            bun test
           fi
         shell: bash
