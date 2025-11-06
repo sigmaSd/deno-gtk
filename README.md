@@ -15,40 +15,6 @@ clean, object-oriented API similar to native GTK bindings in other languages.
 **Cross-platform support:** Works on Linux, macOS, and Windows (via MSYS2/GTK
 for Windows).
 
-## Features
-
-- ✅ **High-level API**: Object-oriented wrappers that hide FFI complexity
-- ✅ **Type-safe**: Full TypeScript type definitions
-- ✅ **No low-level pointers**: Application code doesn't deal with raw pointers
-- ✅ **Signal/event system**: Connect callbacks to widget signals easily
-- ✅ **Adwaita support**: Modern GNOME-style widgets and styling
-- ✅ **Cross-platform**: Works on Linux, macOS, and Windows
-
-## Requirements
-
-- **Deno**: v1.37 or later
-- **GTK4**: libgtk-4.so.1 or later
-- **libadwaita**: libadwaita-1.so.0 or later
-- **GLib/GIO/GObject**: Standard dependencies (usually installed with GTK)
-
-### Install Dependencies (Debian/Ubuntu)
-
-```bash
-sudo apt install libgtk-4-1 libadwaita-1-0 libglib2.0-0
-```
-
-### Install Dependencies (Fedora)
-
-```bash
-sudo dnf install gtk4 libadwaita
-```
-
-### Install Dependencies (Arch)
-
-```bash
-sudo pacman -S gtk4 libadwaita
-```
-
 ## Installation
 
 Import directly from JSR in your Deno project:
@@ -67,7 +33,7 @@ Or add to your `deno.json`:
 ```json
 {
   "imports": {
-    "@sigmasd/gtk": "jsr:@sigmasd/gtk@^0.1.0"
+    "@sigmasd/gtk": "jsr:@sigmasd/gtk"
   }
 }
 ```
@@ -297,17 +263,6 @@ Object-oriented classes that:
 - Manage GValue conversions for properties
 - Register and manage signal callbacks
 
-### No Pointer Exposure
-
-Application code never needs to:
-
-- Call `Deno.UnsafePointer` directly
-- Manage `.ptr` properties manually
-- Handle memory allocation/deallocation
-- Convert strings to C strings
-
-All of this is handled internally by the wrapper classes.
-
 ## Development
 
 ### Project Structure
@@ -364,18 +319,6 @@ export class MyWidget extends Widget {
 - **Platform testing**: While cross-platform library loading is implemented,
   primary testing has been on Linux
 
-## Roadmap
-
-- [ ] Comprehensive testing on macOS and Windows
-- [ ] More widget wrappers (Switch, CheckButton, RadioButton, etc.)
-- [ ] CSS provider support
-- [ ] GtkBuilder template support
-- [ ] Async/Promise-based dialogs
-- [ ] Better signal disconnection/cleanup
-- [ ] Split into modular files (gtk.ts, gio.ts, adwaita.ts)
-- [ ] DBus bindings for desktop integration
-- [ ] AppIndicator/StatusNotifier for system tray
-
 ## Getting Started with Your First App
 
 Create a new file `my-app.ts`:
@@ -425,28 +368,6 @@ Run it:
 deno run --allow-ffi my-app.ts
 ```
 
-## Contributing
-
-Contributions are welcome! Areas that need help:
-
-- Testing on different Linux distributions
-- Adding more widget wrappers
-- macOS and Windows support
-- Documentation improvements
-- Example applications
-
 ## License
 
 MIT License - See LICENSE file for details
-
-## Resources
-
-- [GTK4 Documentation](https://docs.gtk.org/gtk4/)
-- [libadwaita Documentation](https://gnome.pages.gitlab.gnome.org/libadwaita/)
-- [Deno FFI Documentation](https://deno.land/manual/runtime/ffi_api)
-- [GObject Reference](https://docs.gtk.org/gobject/)
-
-## Acknowledgments
-
-Built with inspiration from GTK bindings in other languages (PyGObject, gtk-rs,
-etc.) and adapted for Deno's FFI capabilities.
