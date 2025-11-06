@@ -74,7 +74,7 @@ jobs:
           if [ "$RUNNER_OS" == "Linux" ]; then
             xvfb-run -a deno task test
           elif [ "$RUNNER_OS" == "Windows" ]; then
-            deno test --allow-ffi
+            deno test --allow-ffi --node-modules-dir=auto
           else
             deno task test
           fi
