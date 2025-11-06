@@ -219,9 +219,9 @@ app.connect("activate", () => {
   const button = new Button("Fetch Data");
   button.connect("clicked", async () => {
     // Now you can use async/await!
-    const response = await fetch("https://api.example.com/data");
+    const response = await fetch("https://api.github.com/repos/denoland/deno");
     const data = await response.json();
-    console.log("Fetched data:", data);
+    console.log("Fetched repo:", data.name, "Stars:", data.stargazers_count);
   });
 
   win.setChild(button);
