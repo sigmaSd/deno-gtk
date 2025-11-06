@@ -34,8 +34,5 @@ jobs:
       - name: Verify formatting
         run: deno fmt --check
 
-      - name: Run linter
-        run: deno lint
-
-      - name: Run type check
-        run: deno check .
+      - name: Run check
+        run: deno task check
