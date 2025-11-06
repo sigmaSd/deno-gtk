@@ -41,7 +41,6 @@ class WidgetsDemoWindow {
     this.#outputLabel.setProperty("xalign", 0);
 
     this.#buildUI();
-    this.#setupSignals();
   }
 
   #buildUI() {
@@ -254,13 +253,6 @@ class WidgetsDemoWindow {
     frame.setChild(outerBox);
 
     return frame;
-  }
-
-  #setupSignals() {
-    this.#win.connect("close-request", () => {
-      console.log("Window closed");
-      return false;
-    });
   }
 
   #updateOutput(message: string) {

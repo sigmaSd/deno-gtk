@@ -1,9 +1,9 @@
 /**
- * High-level TypeScript bindings for GTK4 and libadwaita using Deno's FFI.
+ * High-level TypeScript bindings for GTK4 and libadwaita using Deno/Bun's FFI.
  *
  * This module provides idiomatic, object-oriented wrappers around GTK4, GLib, GIO,
  * GObject, and libadwaita, allowing you to build native desktop applications using
- * Deno. The library abstracts away low-level pointer manipulation and provides a
+ * Deno/Bun. The library abstracts away low-level pointer manipulation and provides a
  * clean API similar to native GTK bindings in other languages.
  *
  * All dlopen calls and FFI symbol definitions are handled internally - application
@@ -12,7 +12,7 @@
  *
  * @example Basic application
  * ```typescript
- * import { Application, ApplicationWindow, Button } from "jsr:@sigmasd/gtk";
+ * import { Application, ApplicationWindow, Button } from "@sigmasd/gtk";
  *
  * const app = new Application("com.example.App", 0);
  *
@@ -35,8 +35,8 @@
  *
  * @example Using async/await with EventLoop
  * ```typescript
- * import { Application, Button } from "jsr:@sigmasd/gtk";
- * import { EventLoop } from "jsr:@sigmasd/gtk/eventloop";
+ * import { Application, Button } from "@sigmasd/gtk";
+ * import { EventLoop } from "@sigmasd/gtk/eventloop";
  *
  * const app = new Application("com.example.App", 0);
  * const eventLoop = new EventLoop();

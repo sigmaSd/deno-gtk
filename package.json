@@ -1,0 +1,10 @@
+{
+  "name": "@sigmasd/gtk",
+  "type": "module",
+  "exports": {
+    ".": "./src/gtk-ffi.ts"
+  },
+  "scripts": {
+    "check": "deno fmt . && deno lint && deno check --node-modules-dir=auto"
+  }
+}

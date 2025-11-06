@@ -1,7 +1,7 @@
-# GTK FFI for Deno
+# GTK FFI for Deno/Bun
 
-High-level TypeScript bindings for GTK4 and libadwaita using Deno's FFI (Foreign
-Function Interface).
+High-level TypeScript bindings for GTK4 and libadwaita using Deno/Bun's FFI
+(Foreign Function Interface).
 
 **Available on JSR:** `@sigmasd/gtk`
 
@@ -11,39 +11,22 @@ Function Interface).
 
 This project provides idiomatic TypeScript wrappers around GTK4, GLib, GIO,
 GObject, and libadwaita, allowing you to build native desktop applications using
-Deno. The library abstracts away low-level pointer manipulation and provides a
-clean, object-oriented API similar to native GTK bindings in other languages.
+Deno/Bun. The library abstracts away low-level pointer manipulation and provides
+a clean, object-oriented API similar to native GTK bindings in other languages.
 
 **Cross-platform support:** Works on Linux, macOS, and Windows (via MSYS2/GTK
 for Windows).
 
 ## Installation
 
-Import directly from JSR in your Deno project:
+In Deno you can import directly
+
+For bun you need to install it first using `bunx jsr add @sigmasd/gtk`
+
+Import directly from JSR in your Deno/Bun project:
 
 ```typescript
-import {
-  Application,
-  ApplicationWindow,
-  Button,
-  Label,
-} from "jsr:@sigmasd/gtk";
-```
-
-Or add to your `deno.json`:
-
-```json
-{
-  "imports": {
-    "@sigmasd/gtk": "jsr:@sigmasd/gtk"
-  }
-}
-```
-
-Then import:
-
-```typescript
-import { Application, Button } from "@sigmasd/gtk";
+import { Application, ApplicationWindow, Button, Label } from "@sigmasd/gtk"; // or directly in deno with jsr:@sigmasd/gtk
 ```
 
 ## Quick Start
@@ -58,7 +41,7 @@ import {
   Button,
   GTK_ORIENTATION_VERTICAL,
   Label,
-} from "jsr:@sigmasd/gtk";
+} from "@sigmasd/gtk";
 
 const app = new Application("com.example.HelloWorld", 0);
 
@@ -93,10 +76,10 @@ app.run([]);
 
 ```bash
 # Using JSR
-deno run --allow-ffi your-app.ts
+deno run --allow-ffi your-app.ts # or bun your-app.ts
 
 # Or from the repository
-deno run --allow-ffi examples/simple.ts
+deno run --allow-ffi examples/simple.ts # or bun examples/simple.ts
 ```
 
 ## Examples
@@ -116,7 +99,7 @@ The repository's `examples/` directory contains sample applications:
   - Using setTimeout and Promises
   - Running multiple async operations in parallel
 
-Run examples:
+Run examples: (can be run with Bun as well)
 
 ```bash
 # Simple example
@@ -181,32 +164,32 @@ import {
   Button,
   Entry,
   Label,
-} from "jsr:@sigmasd/gtk";
+} from "@sigmasd/gtk";
 
 // Import constants
 import {
   GTK_ORIENTATION_HORIZONTAL,
   GTK_ORIENTATION_VERTICAL,
-} from "jsr:@sigmasd/gtk";
+} from "@sigmasd/gtk";
 
 // Import Adwaita widgets
-import { HeaderBar, PreferencesWindow, StyleManager } from "jsr:@sigmasd/gtk";
+import { HeaderBar, PreferencesWindow, StyleManager } from "@sigmasd/gtk";
 
 // Import event loop utilities (optional)
-import { EventLoop } from "jsr:@sigmasd/gtk/eventloop";
+import { EventLoop } from "@sigmasd/gtk/eventloop";
 ```
 
 ## Event Loop Integration
 
 By default, GTK's `app.run()` blocks JavaScript's event loop, preventing
 `async/await` from working. The `EventLoop` class provides a solution by
-integrating GLib's MainContext with Deno's event loop.
+integrating GLib's MainContext with Deno/Bun's event loop.
 
 ### Using EventLoop
 
 ```typescript
-import { Application, ApplicationWindow, Button } from "jsr:@sigmasd/gtk";
-import { EventLoop } from "jsr:@sigmasd/gtk/eventloop";
+import { Application, ApplicationWindow, Button } from "@sigmasd/gtk";
+import { EventLoop } from "@sigmasd/gtk/eventloop";
 
 const app = new Application("com.example.App", 0);
 const eventLoop = new EventLoop();
@@ -251,7 +234,7 @@ The EventLoop uses a hybrid approach:
 Use `EventLoop` when you need:
 
 - ✅ `async/await` and Promises in your GTK app
-- ✅ `fetch()` or other async Deno APIs
+- ✅ `fetch()` or other async Deno/Bun APIs
 - ✅ `setTimeout()`, `setInterval()` to work properly
 - ✅ Integration with async libraries
 
@@ -358,12 +341,13 @@ Object-oriented classes that:
 ```
 gtk/
 ├── src/
-│   ├── gtk-ffi.ts      # Main FFI bindings and wrappers
-│   └── eventloop.ts    # Event loop for async/await support
+|   |-- bun-deno-compat.ts # Deno compatibility layer for Bun
+│   ├── gtk-ffi.ts         # Main FFI bindings and wrappers
+│   └── eventloop.ts       # Event loop for async/await support
 ├── examples/
-│   ├── simple.ts       # Simple hello world
-│   └── widgets-demo.ts # Comprehensive widget demo
-├── deno.json           # Package configuration
+│   ├── simple.ts          # Simple hello world
+│   └── widgets-demo.ts    # Comprehensive widget demo
+├── deno.json              # Package configuration
 └── README.md
 ```
 
@@ -371,7 +355,7 @@ gtk/
 
 The `eventloop.ts` module provides:
 
-**`EventLoop` class**: Integrates GLib's MainContext with Deno's event loop
+**`EventLoop` class**: Integrates GLib's MainContext with Deno/Bun's event loop
 
 - `start(app)` - Start the event loop with your application
 - `stop()` - Stop the event loop and quit the application

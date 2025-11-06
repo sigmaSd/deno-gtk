@@ -2,7 +2,7 @@
  * Event loop integration for GTK applications with async/await support.
  *
  * This module provides the `EventLoop` class which integrates GLib's MainContext
- * with Deno's event loop, enabling the use of async/await, Promises, fetch(),
+ * with Deno/Bub's event loop, enabling the use of async/await, Promises, fetch(),
  * setTimeout(), and other async JavaScript APIs within GTK applications.
  *
  * By default, GTK's `app.run()` blocks JavaScript's event loop. The EventLoop
@@ -12,8 +12,8 @@
  *
  * @example
  * ```typescript
- * import { Application } from "jsr:@sigmasd/gtk";
- * import { EventLoop } from "jsr:@sigmasd/gtk/eventloop";
+ * import { Application } from "@sigmasd/gtk";
+ * import { EventLoop } from "@sigmasd/gtk/eventloop";
  *
  * const app = new Application("com.example.App", 0);
  * const eventLoop = new EventLoop();
