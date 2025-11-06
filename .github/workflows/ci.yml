@@ -32,7 +32,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-4-dev libadwaita-1-dev
+          sudo apt-get install -y libgtk-4-dev libadwaita-1-dev xvfb
 
       - name: Install GTK dependencies (macOS)
         if: runner.os == 'macOS'
@@ -61,7 +61,19 @@ jobs:
         run: deno fmt --check
 
       - name: Run tests (Deno)
-        run: deno task test
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            xvfb-run -a deno task test
+          else
+            deno task test
+          fi
+        shell: bash
 
       - name: Run tests (Bun)
-        run: bun test
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            xvfb-run -a bun test/widget_test.ts
+          else
+            bun test/widget_test.ts
+          fi
+        shell: bash
